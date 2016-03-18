@@ -33,7 +33,7 @@ console.log(ship);
     function handleKeys(event) {
         console.log(event.keyCode);
         if (event.keyCode === 38) {
-          if (ship.velocity === 10) {
+          if (ship.velocity >= 10) {
             ship.velocity = 10;
             console.log(ship.velocity);
           }
@@ -43,7 +43,7 @@ console.log(ship);
           }
         }
         if (event.keyCode === 40) {
-          if (ship.velocity === 0) {
+          if (ship.velocity <= 0) {
             ship.velocity = 0;
             console.log(ship.velocity);
           }
@@ -54,10 +54,12 @@ console.log(ship);
         }
         if (event.keyCode === 37) {
             ship.angle = ship.angle - 15;
+            ship.element.style.transform = "rotate(" + ship.angle + "deg)";
             console.log(ship.angle);
           }
         if (event.keyCode === 39) {
             ship.angle = ship.angle + 15;
+            ship.element.style.transform = "rotate(" + ship.angle + "deg)";
             console.log(ship.angle);
           }
 
