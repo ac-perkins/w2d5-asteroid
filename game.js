@@ -8,6 +8,8 @@ var ship = {
   element: document.getElementById('ship')
 };
 
+ship.element.style.top = "0px";
+ship.element.style.left = "0px";
 console.log(ship);
 
     ship.element.addEventListener('asteroidDetected', function (event) {
@@ -65,6 +67,11 @@ console.log(ship);
 
         // Implement me!
 
+
+
+        // getShipMovement(ship.velocity, ship.angle);
+        // console.log(getShipMovement(ship.velocity, ship.angle));
+
     }
     document.querySelector('body').addEventListener('keyup', handleKeys);
 
@@ -91,11 +98,13 @@ console.log(ship);
     function gameLoop() {
         // This function for getting ship movement is given to you (at the bottom).
         // NOTE: you will need to change these arguments to match your ship object!
-        // var move = getShipMovement(shipsCurrentVelocity, shipsCurrentAngle);
+        var move = getShipMovement(ship.velocity, ship.angle);
 
+        ship.element.style.top = (parseInt(ship.element.style.top) - move.top) + "px";
+        ship.element.style.left = (parseInt(ship.element.style.left) + move.left) + "px";
         // Move the ship!
-
-
+        // console.log(move);
+        // console.log(move.top);
         // Time to check for any collisions (see below)...
         checkForCollisions();
     }
