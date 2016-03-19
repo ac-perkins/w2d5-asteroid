@@ -88,7 +88,10 @@ console.log(ship);
      * return {void}
      */
     document.querySelector('main').addEventListener('crash', function () {
-
+      ship.velocity = 0;
+      ship.element.style.transform = "rotate(360deg) scale(.001) skew(70deg, 70deg)";
+      // ship.element.style.transform = "scale(0)";
+      ship.element.style.transition = "all 3s";
         // What might you need/want to do in here?
 
     });
@@ -127,13 +130,14 @@ console.log(ship);
      * @return void
      */
     function checkForCollisions(shipPos, asteroidPos) {
+      // for (var i = 0; i < asteroids.length, i++)
 
       if (!(asteroidPos.left > shipPos.right ||
            asteroidPos.right < shipPos.left ||
            asteroidPos.top > shipPos.bottom ||
            asteroidPos.bottom < shipPos.top)) {
              crash(asteroids[0]);
-             ship.velocity = 0;
+            //  ship.velocity = 0;
 
              console.log("CRASH!!!");
            }
