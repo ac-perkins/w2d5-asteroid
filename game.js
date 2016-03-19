@@ -10,8 +10,8 @@ var ship = {
 
 var asteroids = [];
 
-ship.element.style.top = "0px";
-ship.element.style.left = "0px";
+ship.element.style.top = "350%";
+ship.element.style.left = "500%";
 console.log(ship);
 
     ship.element.addEventListener('asteroidDetected', function (event) {
@@ -39,36 +39,36 @@ console.log(ship);
      * @return {void}          In other words, no need to return anything
      */
     function handleKeys(event) {
-        console.log(event.keyCode);
+        // console.log(event.keyCode);
         if (event.keyCode === 38) {
           if (ship.velocity >= 10) {
             ship.velocity = 10;
-            console.log(ship.velocity);
+            // console.log(ship.velocity);
           }
           else {
           ship.velocity = ship.velocity + 1;
-          console.log(ship.velocity);
+          // console.log(ship.velocity);
           }
         }
         if (event.keyCode === 40) {
           if (ship.velocity <= 0) {
             ship.velocity = 0;
-            console.log(ship.velocity);
+            // console.log(ship.velocity);
           }
           else {
           ship.velocity = ship.velocity - 1;
-          console.log(ship.velocity);
+          // console.log(ship.velocity);
           }
         }
         if (event.keyCode === 37) {
-            ship.angle = ship.angle - 15;
+            ship.angle = ship.angle - 20;
             ship.element.style.transform = "rotate(" + ship.angle + "deg)";
-            console.log(ship.angle);
+            // console.log(ship.angle);
           }
         if (event.keyCode === 39) {
-            ship.angle = ship.angle + 15;
+            ship.angle = ship.angle + 20;
             ship.element.style.transform = "rotate(" + ship.angle + "deg)";
-            console.log(ship.angle);
+            // console.log(ship.angle);
           }
 
         // Implement me!
@@ -90,8 +90,7 @@ console.log(ship);
     document.querySelector('main').addEventListener('crash', function () {
       ship.velocity = 0;
       ship.element.style.transform = "rotate(360deg) scale(.001) skew(70deg, 70deg)";
-      // ship.element.style.transform = "scale(0)";
-      ship.element.style.transition = "all 3s";
+      ship.element.style.transition = "all 2.5s";
         // What might you need/want to do in here?
 
     });
@@ -112,7 +111,7 @@ console.log(ship);
         ship.element.style.top = (parseInt(ship.element.style.top) - move.top) + "px";
         ship.element.style.left = (parseInt(ship.element.style.left) + move.left) + "px";
         // Time to check for any collisions (see below)...
-        checkForCollisions(ship.element.getBoundingClientRect(), asteroids[0].getBoundingClientRect());
+        checkForCollisions(ship.element.getBoundingClientRect(), asteroids);
     }
 
     /**
@@ -129,18 +128,19 @@ console.log(ship);
      *
      * @return void
      */
-    function checkForCollisions(shipPos, asteroidPos) {
-      // for (var i = 0; i < asteroids.length, i++)
-
-      if (!(asteroidPos.left > shipPos.right ||
-           asteroidPos.right < shipPos.left ||
-           asteroidPos.top > shipPos.bottom ||
-           asteroidPos.bottom < shipPos.top)) {
-             crash(asteroids[0]);
-            //  ship.velocity = 0;
+    function checkForCollisions(shipPos, aPos) {
+      for (var i = 0; i < asteroids.length; i++) {
+        var asteroidsPos = aPos[i].getBoundingClientRect();
+        // console.log(asteroidsPos);
+      if (!(asteroidsPos.left > shipPos.right ||
+           asteroidsPos.right < shipPos.left ||
+           asteroidsPos.top > shipPos.bottom ||
+           asteroidsPos.bottom < shipPos.top)) {
+             crash(asteroids[i]);
 
              console.log("CRASH!!!");
            }
+         }
         // Implement me!
 
     }
