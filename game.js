@@ -105,17 +105,17 @@ console.log(ship);
         // Time to check for any collisions (see below)...
         checkForCollisions(ship.element.getBoundingClientRect(), asteroids);
 
-        if (parseInt(ship.element.style.top) < 0) {
+        if ((parseInt(ship.element.style.top) + 50) < 0) {
           ship.element.style.top = window.innerHeight + "px";
         }
         if (parseInt(ship.element.style.top) > window.innerHeight) {
-          ship.element.style.top = 0 + "px";
+          ship.element.style.top = -50 + "px";
         }
-        if (parseInt(ship.element.style.left) < 0) {
+        if ((parseInt(ship.element.style.left) + 50) < 0) {
           ship.element.style.left = window.innerWidth + "px";;
        }
         if (parseInt(ship.element.style.left) > window.innerWidth) {
-          ship.element.style.left = 0 + "px";;
+          ship.element.style.left = -50 + "px";;
       }
 
         console.log(parseInt(ship.element.style.top));
