@@ -8,6 +8,8 @@ var ship = {
   element: document.getElementById('ship')
 };
 
+var asteroids = [];
+
 ship.element.style.top = "0px";
 ship.element.style.left = "0px";
 console.log(ship);
@@ -15,7 +17,11 @@ console.log(ship);
     ship.element.addEventListener('asteroidDetected', function (event) {
         // You can detect when a new asteroid appears with this event.
         // The new HTML element will be in event.detail
+        // alert("Asteroid detected!");
+        // console.log(event.detail);
 
+        asteroids.push(event.detail);
+        console.log(asteroids[0].getBoundingClientRect());
         // What might you need/want to do in here?
 
     });
@@ -102,11 +108,8 @@ console.log(ship);
 
         ship.element.style.top = (parseInt(ship.element.style.top) - move.top) + "px";
         ship.element.style.left = (parseInt(ship.element.style.left) + move.left) + "px";
-        // Move the ship!
-        // console.log(move);
-        // console.log(move.top);
         // Time to check for any collisions (see below)...
-        checkForCollisions();
+        checkForCollisions(ship.element.getBoundingClientRect(), asteroids[0].getBoundingClientRect());
     }
 
     /**
@@ -123,8 +126,17 @@ console.log(ship);
      *
      * @return void
      */
-    function checkForCollisions() {
+    function checkForCollisions(shipPos, asteroidPos) {
 
+      if (!(asteroidPos.left > shipPos.right ||
+           asteroidPos.right < shipPos.left ||
+           asteroidPos.top > shipPos.bottom ||
+           asteroidPos.bottom < shipPos.top)) {
+             crash(asteroids[0]);
+             ship.velocity = 0;
+
+             console.log("CRASH!!!");
+           }
         // Implement me!
 
     }
