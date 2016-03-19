@@ -85,6 +85,7 @@ console.log(ship);
       ship.velocity = 0;
       ship.element.style.transform = "rotate(360deg) scale(.001) skew(70deg, 70deg)";
       ship.element.style.transition = "all 2.5s";
+      ship.element.style.borderBottom = "50px solid red";
     });
 
     /**
@@ -112,11 +113,11 @@ console.log(ship);
           ship.element.style.top = -50 + "px";
         }
         if (parseInt(ship.element.style.left) < -50) {
-          ship.element.style.left = window.innerWidth + "px";;
-       }
+          ship.element.style.left = window.innerWidth + "px";
+        }
         if (parseInt(ship.element.style.left) > window.innerWidth) {
-          ship.element.style.left = -50 + "px";;
-      }
+          ship.element.style.left = -50 + "px";
+        }
 
         console.log(parseInt(ship.element.style.top));
     }
