@@ -11,7 +11,7 @@ var ship = {
 var asteroids = [];
 
 ship.element.style.top = "350%";
-ship.element.style.left = "500%";
+ship.element.style.left = "600%";
 console.log(ship);
 
     ship.element.addEventListener('asteroidDetected', function (event) {
@@ -22,8 +22,6 @@ console.log(ship);
 
         asteroids.push(event.detail);
         console.log(asteroids[0].getBoundingClientRect());
-        // What might you need/want to do in here?
-
     });
 
     /**
@@ -41,8 +39,8 @@ console.log(ship);
     function handleKeys(event) {
         // console.log(event.keyCode);
         if (event.keyCode === 38) {
-          if (ship.velocity >= 10) {
-            ship.velocity = 10;
+          if (ship.velocity >= 30) {
+            ship.velocity = 30;
             // console.log(ship.velocity);
           }
           else {
@@ -71,10 +69,6 @@ console.log(ship);
             // console.log(ship.angle);
           }
 
-        // Implement me!
-
-
-
         // getShipMovement(ship.velocity, ship.angle);
         // console.log(getShipMovement(ship.velocity, ship.angle));
 
@@ -91,8 +85,6 @@ console.log(ship);
       ship.velocity = 0;
       ship.element.style.transform = "rotate(360deg) scale(.001) skew(70deg, 70deg)";
       ship.element.style.transition = "all 2.5s";
-        // What might you need/want to do in here?
-
     });
 
     /**
@@ -112,6 +104,21 @@ console.log(ship);
         ship.element.style.left = (parseInt(ship.element.style.left) + move.left) + "px";
         // Time to check for any collisions (see below)...
         checkForCollisions(ship.element.getBoundingClientRect(), asteroids);
+
+        if (parseInt(ship.element.style.top) < 0) {
+          ship.element.style.top = window.innerHeight + "px";
+        }
+        if (parseInt(ship.element.style.top) > window.innerHeight) {
+          ship.element.style.top = 0 + "px";
+        }
+        if (parseInt(ship.element.style.left) < 0) {
+          ship.element.style.left = window.innerWidth + "px";;
+       }
+        if (parseInt(ship.element.style.left) > window.innerWidth) {
+          ship.element.style.left = 0 + "px";;
+      }
+
+        console.log(parseInt(ship.element.style.top));
     }
 
     /**
@@ -137,12 +144,9 @@ console.log(ship);
            asteroidsPos.top > shipPos.bottom ||
            asteroidsPos.bottom < shipPos.top)) {
              crash(asteroids[i]);
-
              console.log("CRASH!!!");
            }
-         }
-        // Implement me!
-
+      }
     }
 
 
