@@ -24,6 +24,12 @@ console.log(ship);
         console.log(asteroids[0].getBoundingClientRect());
     });
 
+
+    // var htmlMain = document.querySelector('main');
+    //
+    // htmlMain.innerHTML = 'Press Space to teleport' + htmlMain.innerHTML;
+    // htmlMain.style.color = "white";
+
     /**
      * Use this function to handle when a key is pressed. Which key? Use the
      * event.keyCode property to know:
@@ -37,7 +43,7 @@ console.log(ship);
      * @return {void}          In other words, no need to return anything
      */
     function handleKeys(event) {
-        // console.log(event.keyCode);
+        console.log(event.keyCode);
         if (event.keyCode === 38) {
           if (ship.velocity >= 30) {
             ship.velocity = 30;
@@ -69,10 +75,31 @@ console.log(ship);
             // console.log(ship.angle);
           }
 
-        // getShipMovement(ship.velocity, ship.angle);
-        // console.log(getShipMovement(ship.velocity, ship.angle));
+          // PRESS SPACE TO TELEPORT!
+        if (event.keyCode === 32) {
+              ship.element.style.top = (Math.random() * 750) + "px";
+              ship.element.style.left = (Math.random() * 1000) + "px";
+              ship.element.style.transform = "rotate(" + (Math.random() * 360) + "deg)";
+              ship.angle = (Math.random() * 360);
+              // console.log(ship.angle);
+        }
 
+          // PRESS H FOR HYPERDRIVE!
+        if (event.keyCode === 72) {
+            ship.velocity = 100;
+        }
+
+          // PRESS C TO CLOAK
+        if (event.keyCode === 67) {
+              ship.element.style.opacity = 0;
+        }
+
+          // PRESS V TO DECLOAK
+        if (event.keyCode === 86) {
+              ship.element.style.opacity = 1;
+        }
     }
+
     document.querySelector('body').addEventListener('keyup', handleKeys);
 
     /**
@@ -119,7 +146,7 @@ console.log(ship);
           ship.element.style.left = -50 + "px";
         }
 
-        console.log(parseInt(ship.element.style.top));
+        // console.log(parseInt(ship.element.style.top));
     }
 
     /**
