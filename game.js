@@ -10,8 +10,8 @@
 
   var asteroids = [];
 
-  ship.element.style.top = "350%";
-  ship.element.style.left = "600%";
+  ship.element.style.top = (window.innerHeight  / 2)+ "px";
+  ship.element.style.left = (window.innerWidth  / 2)+ "px";
   console.log(ship);
 
   ship.element.addEventListener('asteroidDetected', function (event) {
