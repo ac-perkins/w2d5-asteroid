@@ -75,6 +75,7 @@
     // PRESS H FOR HYPERDRIVE!
     if (event.keyCode === 72) {
       ship.velocity = 100;
+      ship.element.style.borderBottom = "100px solid green";
     }
 
     // PRESS C TO CLOAK!
